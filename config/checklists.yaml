@@ -1,0 +1,179 @@
+# Pre-Approval Checklists — Configuration
+# Each category defines what the WEBSITE can verify vs what needs HUMAN review.
+# A non-engineer can add a new category by copying a block.
+
+categories:
+
+  community_classes:
+    display_name: "Community Classes"
+    form_keywords: ["community class", "community classes"]
+    website_checks:
+      - id: public_access
+        question: "Is the class open to the general public?"
+        how_to_check: "Look for language saying open to all, general public, anyone can join. Red flag: restricted to people with disabilities or OPWDD."
+      - id: published_fees
+        question: "Are fees published on the website?"
+        how_to_check: "Find a pricing page, rate card, or fee listed publicly. Must be visible without calling."
+      - id: fee_match
+        question: "Does the published fee match the application?"
+        how_to_check: "Compare the website price to the fee on the form."
+      - id: equal_pricing
+        question: "Are fees the same for everyone (no special OPWDD pricing)?"
+        how_to_check: "Check there is one price for all — no separate disability/OPWDD rates."
+      - id: subject_based
+        question: "Is the class subject-based (art, dance, martial arts, cooking, etc.)?"
+        how_to_check: "Confirm from class name and description."
+      - id: no_college_credit
+        question: "Does the class NOT give college credits?"
+        how_to_check: "Check the class is non-credit. College credit classes are not eligible."
+      - id: not_clinical
+        question: "Is the class NOT clinical/therapy in nature?"
+        how_to_check: "Confirm it's not described as therapy, clinical treatment, or therapeutic intervention."
+      - id: schedule_exists
+        question: "Is there a published schedule?"
+        how_to_check: "Find class schedule, calendar, dates, or recurring session times."
+    internal_checks:
+      - "Are community classes approved in the budget?"
+      - "Does the class relate to a valued outcome in the Life Plan?"
+      - "Does the class accommodate the individual's health/safety needs?"
+    invoice_note: ">2 sessions/day (up to 60 min each) or >7 sessions/week at one provider requires prior approval."
+
+  coaching:
+    display_name: "Coaching (Parents/Spouse)"
+    form_keywords: ["coaching", "coaching for parents"]
+    website_checks:
+      - id: published_fees
+        question: "Are published fees listed for the course/class?"
+        how_to_check: "Find pricing, tuition, or fees on the website."
+      - id: fee_cap_check
+        question: "Is the fee within program caps ($55/group, $111/private, $500/year)?"
+        how_to_check: "Compare form fee against: group class max $55, private class max $111, yearly cap $500."
+      - id: educational_content
+        question: "Is the content genuinely educational (not lodging/travel)?"
+        how_to_check: "Confirm the program offers classes, workshops, coaching. Lodging/travel excluded."
+    internal_checks:
+      - "Is coaching education approved in the budget?"
+      - "Is the individual over 18?"
+      - "Does the coaching address Life Plan goals?"
+
+  memberships:
+    display_name: "Health Club / Organizational Memberships"
+    form_keywords: ["membership", "memberships", "health club"]
+    website_checks:
+      - id: public_organization
+        question: "Is the organization open to the public (not private/invitation-only)?"
+        how_to_check: "Confirm anyone can join. Look for 'join us', 'become a member', public sign-up."
+      - id: published_fee
+        question: "Is the membership fee published on the website?"
+        how_to_check: "Find a membership/pricing/join page with published rates."
+      - id: fee_match
+        question: "Does the published fee match the form (check monthly vs yearly)?"
+        how_to_check: "Compare website price to form. Note billing frequency (monthly/yearly)."
+    internal_checks:
+      - "Is membership approved in the budget?"
+      - "Is the membership exclusively for the participant (not family/dual)?"
+
+  hri:
+    display_name: "Household Related Items (HRI)"
+    form_keywords: ["household related", "hri"]
+    website_checks:
+      - id: item_exists
+        question: "Does the item exist at the linked page with a visible price?"
+        how_to_check: "Visit the product link. Confirm the item is listed and has a price."
+      - id: exclusion_check
+        question: "Is the item NOT on the exclusion list?"
+        how_to_check: "Check against: Cell Phones, Computer Hardware/Software, Vehicles, Pill Dispensers, Medical Devices, Personal Monitoring Systems. A laptop IS on the exclusion list (Computer Hardware)."
+        exclusion_list:
+          - "cell phone"
+          - "telephone"
+          - "computer hardware"
+          - "computer software"
+          - "laptop"
+          - "desktop"
+          - "tablet"
+          - "vehicle"
+          - "pill dispenser"
+          - "medication system"
+          - "personal monitoring system"
+      - id: safety_features
+        question: "Do the product page details support the safety features on the form?"
+        how_to_check: "Compare the safety features listed on the form with the product description."
+    internal_checks:
+      - "Is HRI approved in the budget?"
+      - "Is the individual over 18?"
+      - "Is the item within the $1,500/year cap?"
+    cap: 1500
+
+  otps:
+    display_name: "Other Than Personal Services (OTPS)"
+    form_keywords: ["otps", "other than personal services"]
+    website_checks:
+      - id: item_exists
+        question: "Does the item exist at the linked page with a visible price?"
+        how_to_check: "Visit the product link. Confirm the item is listed and priced."
+      - id: exclusion_check
+        question: "Is the item NOT on the OTPS exclusion list?"
+        how_to_check: "Check against: co-pays, hospitalization, cable TV, common household supplies (paper towels/soap/wipes), experimental treatments, rental cars, vehicle purchases, legal fees."
+        exclusion_list:
+          - "medical co-pay"
+          - "hospitalization"
+          - "cable television"
+          - "cable tv"
+          - "paper towels"
+          - "soap"
+          - "wipes"
+          - "common household supplies"
+          - "experimental treatment"
+          - "rental car"
+          - "vehicle"
+          - "legal fee"
+    internal_checks:
+      - "Is OTPS approved in the budget?"
+      - "Is the item within the $3,000/year cap?"
+    cap: 3000
+
+  transition_program:
+    display_name: "Transition Program"
+    form_keywords: ["transition program", "transition"]
+    website_checks:
+      - id: published_fees
+        question: "Are published fees listed?"
+        how_to_check: "Find tuition or fee schedule on the program's website."
+      - id: fee_cap_check
+        question: "Is the fee within caps ($350/course, $800/month)?"
+        how_to_check: "Compare form fee to caps: $350 per course max, $800 per month max."
+      - id: noncredit
+        question: "Is the program noncredit-bearing and skill-building/employment oriented?"
+        how_to_check: "Confirm it's non-credit. Should focus on job skills, vocational training, employment."
+      - id: not_opwdd_location
+        question: "Is the program NOT at an OPWDD-certified location?"
+        how_to_check: "Confirm it's at a college, community center, etc. — not an OPWDD facility."
+    internal_checks:
+      - "Is the transition program approved in the budget?"
+      - "Has the individual completed their educational program?"
+      - "Staff background screening letter on file? (needs document, not website)"
+
+  appeal:
+    display_name: "Pre-Approval Appeal"
+    form_keywords: ["appeal", "appeals"]
+    website_checks:
+      - id: recheck_public
+        question: "Re-verify: Is the class open to the general public?"
+        how_to_check: "Re-examine with fresh eyes, considering the appeal justification."
+      - id: recheck_fees
+        question: "Re-verify: Are fees published and do they match?"
+        how_to_check: "Look harder for fees — check subpages, PDFs, rate sheets, booking pages."
+      - id: recheck_equal_pricing
+        question: "Re-verify: Are fees the same for everyone?"
+        how_to_check: "Check for any OPWDD-specific pricing."
+      - id: recheck_subject
+        question: "Re-verify: Is the class subject-based?"
+        how_to_check: "Confirm the class teaches a specific skill."
+      - id: recheck_schedule
+        question: "Re-verify: Is there a published schedule?"
+        how_to_check: "Look for class schedule or session information."
+      - id: denial_assessment
+        question: "Does the website evidence support or refute the denial reason?"
+        how_to_check: "Read the denial reason on the appeal form. Specifically look for evidence that addresses it."
+    internal_checks:
+      - "Was the original denial reviewed by the appeal committee?"
